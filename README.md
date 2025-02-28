@@ -18,8 +18,6 @@ You can install the package via composer:
 composer require epmnzava/bulksms
 ```
 
-
-
 # Update your config (for Laravel 5.4 and below)
 Add the service provider to the providers array in config/app.php:
 ```
@@ -30,7 +28,7 @@ Add the facade to the aliases array in config/app.php:
 'BulkSms'=>Epmnzava\Bulksms\BulksmsFacade::class,
 ```
 
-# Publish the package configuration (for Laravel 5.4 and below)
+# Publish the package configuration (for Laravel 5.4 and above)
 Publish the configuration file and migrations by running the provided console command:
 ```
 php artisan vendor:publish --provider="Epmnzava\Bulksms\BulksmsServiceProvider"
