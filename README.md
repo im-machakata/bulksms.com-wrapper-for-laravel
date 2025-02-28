@@ -1,97 +1,109 @@
-# BULKSMS.COM API PACKAGE WRAPPER
+# BulkSMS.com API Package Wrapper
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/epmnzava/bulksms.svg?style=flat-square)](https://packagist.org/packages/epmnzava/bulksms)
 [![Quality Score](https://img.shields.io/scrutinizer/g/dbrax/bulksms.svg?style=flat-square)](https://scrutinizer-ci.com/g/epmnzava/bulksms)
 [![Total Downloads](https://img.shields.io/packagist/dt/epmnzava/bulksms.svg?style=flat-square)](https://packagist.org/packages/epmnzava/bulksms)
 
-A package api wrapper for bulksms.com mainly developed to be used and resued by php and laravel developers
+This package provides a convenient API wrapper for BulkSMS.com, designed for seamless integration into PHP and Laravel projects.
 
-# Installation
+## Installation
 
-- Laravel Version: ˆ7.2 ==> ^9.0
-- PHP Version: ^7.1|^7.2|^7.3|^7.4|^8.0
+**Requirements:**
 
+- Laravel: ^7.2 to ^9.0
+- PHP: ^7.1, ^7.2, ^7.3, ^7.4, or ^8.0
 
-You can install the package via composer:
+Install the package using Composer:
 
 ```bash
 composer require epmnzava/bulksms
 ```
 
-# Update your config (for Laravel 5.4 and below)
-Add the service provider to the providers array in config/app.php:
-```
-Epmnzava\Bulksms\BulksmsServiceProvider::class,
-```
-Add the facade to the aliases array in config/app.php:
-```
-'BulkSms'=>Epmnzava\Bulksms\BulksmsFacade::class,
-```
+## Configuration
 
-# Publish the package configuration (for Laravel 5.4 and above)
-Publish the configuration file and migrations by running the provided console command:
-```
+### Laravel (5.4 and below)
+
+1. Add the service provider to the `providers` array in `config/app.php`:
+
+    ```php
+    Epmnzava\Bulksms\BulksmsServiceProvider::class,
+    ```
+
+2. Add the facade to the `aliases` array in `config/app.php`:
+
+    ```php
+    'BulkSms' => Epmnzava\Bulksms\BulksmsFacade::class,
+    ```
+
+### Laravel (5.4 and above)
+
+Publish the configuration file using Artisan:
+
+```bash
 php artisan vendor:publish --provider="Epmnzava\Bulksms\BulksmsServiceProvider"
 ```
-### Environmental Variables
 
-BULKSMS_SENDERID `Provide your desired sender id `
+## Environment Variables
 
+Configure the following environment variables in your `.env` file:
 
-BULKSMS_SECRET `Provide your bulksms token secret`
-
-BULKSMS_ID  `Provide your bulksms token id`
-
-
-
-# Usage
-
-## Send a simple text 
-``` php
-<?php
-use Epmnzava\Bulksms\Bulksms;
-
-class SendSmsController{
-
-public function send_sms(){
-
-$sms=new Bulksms;
-
-$response=$sms->sendMessage("+255679079774","Just testing please receive blessings");
-
-//Your response will look like this
-
-/**{
-server_response: "[ { "id" : "953262833859043328", "type" : "SENT", "from" : "PamojaWeCan", "to" : "255679079774", "body" : "hellow man", "encoding" : "TEXT", "protocolId" : 0, "messageClass" : 0, "submission" : { "id" : "2-00000000001865236111", "date" : "2021-03-15T12:06:10Z" }, "status" : { "id" : "ACCEPTED.null", "type" : "ACCEPTED", "subtype" : null }, "relatedSentMessageId" : null, "userSuppliedId" : null, "numberOfParts" : null, "creditCost" : null } ]",
-http_status: 201,
-error: ""
-} 
-
-**/
-
-}
-
-}
-
+```bash
+BULKSMS_SENDERID="YourSenderID"
+BULKSMS_SECRET="YourSecretToken"
+BULKSMS_ID="YourTokenID"
 ```
 
-### Testing
+Replace `YourSenderID`, `YourSecretToken`, and `YourTokenID` with your actual BulkSMS.com credentials.
 
-``` bash
+## Usage
+
+### Sending a Simple Text Message
+
+```php
+<?php
+
+use Epmnzava\Bulksms\Bulksms;
+
+class SendSmsController
+{
+    public function sendSms()
+    {
+        $sms = new Bulksms;
+        $response = $sms->sendMessage("+255679079774", "Just testing, please receive blessings.");
+
+        // Example response:
+        /*
+            {
+                server_response: "[ { "id" : "953262833859043328", "type" : "SENT", "from" : "PamojaWeCan", "to" : "255679079774", "body" : "hellow man", "encoding" : "TEXT", "protocolId" : 0, "messageClass" : 0, "submission" : { "id" : "2-00000000001865236111", "date" : "2021-03-15T12:06:10Z" }, "status" : { "id" : "ACCEPTED.null", "type" : "ACCEPTED", "subtype" : null }, "relatedSentMessageId" : null, "userSuppliedId" : null, "numberOfParts" : null, "creditCost" : null } ]",
+                http_status: 201,
+                error: ""
+            }
+        */
+
+        // You can then handle the $response as needed.
+    }
+}
+```
+
+## Testing
+
+Run tests using Composer:
+
+```bash
 composer test
 ```
 
-### Changelog
+## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+See [CHANGELOG.md](https://www.google.com/url?sa=E&source=gmail&q=CHANGELOG.md) for a history of changes.
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Please refer to [CONTRIBUTING.md](https://www.google.com/url?sa=E&source=gmail&q=CONTRIBUTING.md) for contribution guidelines.
 
-### Security
+## Security
 
-If you discover any security related issues, please email epmzava@gmail.com instead of using the issue tracker.
+For security vulnerabilities, please email [epmzava@gmail.com](mailto:epmzava@gmail.com) instead of using the issue tracker.
 
 ## Credits
 
@@ -100,5 +112,4 @@ If you discover any security related issues, please email epmzava@gmail.com inst
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
+This package is licensed under the MIT License. See [LICENSE.md](https://www.google.com/url?sa=E&source=gmail&q=LICENSE.md) for details.
